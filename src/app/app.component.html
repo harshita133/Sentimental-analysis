@@ -1,0 +1,61 @@
+<div class='container-fluid'>
+  <div class='row'>
+
+    <div class='col-sm-9 body-content'>
+      <br />
+      <h3>Import Excel and Dispaly Data</h3>
+
+
+      <br />
+
+      <table class='table' width="100%">
+        <tr>
+          <td>Select Excel File:</td>
+          <td align="left"><input #file type="file" multiple (change)="onFileChange($event)" /></td>
+          <td></td>
+          <td align="left">
+            <button type="button" class="btn dark btn-outline" style="border:2px solid green"
+                    (click)="uploadfile()">
+              Upload
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <div style="float: left">
+        <table class='table' *ngIf="excelData">
+          <thead>
+            <tr>
+              <th>Customer Id</th>
+              <th>Customer Name</th>
+              <th>Comments</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of excelData">
+              <td>{{ d.CId }}</td>
+              <td>{{ d.CName }}</td>
+              <td>{{ d.CComments }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="float: left">
+        <table class='table' *ngIf="result">
+          <thead>
+            <tr>
+            <th> Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of result">
+
+              <td>{{ d.CComments.score }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+  </div>
+</div>
