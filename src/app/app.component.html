@@ -22,6 +22,28 @@
         </tr>
       </table>
 
+      <div *ngIf="countpos">count of positive comments {{countpos}}</div>
+      <div *ngIf="countneg">count of negative comments {{countneg}}</div>
+      <div *ngIf="countneutral">count of neutral comments {{countneutral}}</div>
+
+
+      <div id="chartdiv"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div style="width:100%; float:left">
         <table class='table' *ngIf="excelData" style="width:50%; float:left">
           <thead>
@@ -43,13 +65,15 @@
         <table class='table' *ngIf="result" style="width:50%;  float:left">
           <thead>
             <tr>
-              <th> Score</th>
+              <th> Analysis</th>
+              <th> Per Comment</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let d of result">
+            <tr *ngFor="let y of result">
 
-              <td style="word-wrap: break-word">{{ d.COMMENTSLONG.score }}</td>
+              <td>{{ y.COMMENTSLONG.score }}</td>
+              <td>{{ y.COMMENTSLONG.comparative }}</td>
             </tr>
           </tbody>
         </table>
