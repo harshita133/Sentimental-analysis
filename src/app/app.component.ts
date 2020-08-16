@@ -14,7 +14,7 @@ export class AppComponent {
   public excelData: ExcelData[];
   public require: any
   public result: {};
-  public combine: {};
+  public g: {};
   constructor(private http: HttpClient) { }
   data = [];
   onFileChange(evt: any) {
@@ -53,38 +53,32 @@ export class AppComponent {
       });
       return obj;
     });
-    //console.log(resArr);
-    //resArr.forEach(function (value) {
-    //  console.log(value);
-    //})
     this.excelData = resArr;
 
-    //var Sentiment = require('sentiment');
-    //var sentiment = new Sentiment();
-    //var result = sentiment.analyze('a cat is lovely');
-    //console.dir(result);
+    
 
     let resArr2 = this.data.map((e) => {
       let obj2 = {};
       keys.forEach((key, i) => {
-        if (key == "CComments") {
+        if (key == "COMMENTSLONG") {
           obj2[key] = sentiment.analyze(e[i]);
         }
-        //if (key == "CComments") {
-        //this.result=sentiment.analyze(e[i]);
-        //console.dir(this.result);
-        //}
       });
       return obj2;
     });
     this.result = resArr2;
     console.dir(this.result);
 
-    //this.combine = [...this.excelData, ...this.result];
+    
+
   }
 }
 interface ExcelData {
-  [index: number]: { CId: number; CName: string; CComments: string };
+  [index: number]: {
+    RID: string; COLTREFERENCE: string; COMPANYNAME: string; OCN: string; TICKETTYPE: string;
+    TICKETSTATUS: string; URGENCY: string; FIRSTNAME: string; LASTNAME: string;
+    EMAILADDR: string; AUID: string; TODOCD: string; COMMENTSLONG: string
+  };
 }
 
 

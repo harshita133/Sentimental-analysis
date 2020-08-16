@@ -22,40 +22,38 @@
         </tr>
       </table>
 
-      <div style="float: left">
-        <table class='table' *ngIf="excelData">
+      <div style="width:100%; float:left">
+        <table class='table' *ngIf="excelData" style="width:50%; float:left">
           <thead>
             <tr>
               <th>Customer Id</th>
               <th>Customer Name</th>
-              <th>Comments</th>
-
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let d of excelData">
-              <td>{{ d.CId }}</td>
-              <td>{{ d.CName }}</td>
-              <td>{{ d.CComments }}</td>
+              <td style="word-wrap: break-word">{{ d.RID }}</td>
+
+              <td style="word-wrap: break-word">{{ d.FIRSTNAME }}</td>
             </tr>
           </tbody>
         </table>
-      </div>
-      <div style="float: left">
-        <table class='table' *ngIf="result">
+
+
+        <table class='table' *ngIf="result" style="width:50%;  float:left">
           <thead>
             <tr>
-            <th> Score</th>
+              <th> Score</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let d of result">
 
-              <td>{{ d.CComments.score }}</td>
+              <td style="word-wrap: break-word">{{ d.COMMENTSLONG.score }}</td>
             </tr>
           </tbody>
         </table>
       </div>
-  </div>
+    </div>
   </div>
 </div>
