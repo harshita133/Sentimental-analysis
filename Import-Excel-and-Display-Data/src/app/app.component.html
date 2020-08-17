@@ -1,0 +1,74 @@
+<div class='container-fluid'>
+  <div class='row'>
+
+    <div class='col-sm-9 body-content'>
+      <br />
+      <h1>Import Excel and Dispaly Data</h1>
+
+
+      <br />
+
+      <table class='table' width="100%">
+        <tr>
+          <td>Select Excel File:</td>
+          <td align="left"><input #file type="file" multiple (change)="onFileChange($event)" /></td>
+          <td></td>
+          <td align="left">
+            <button type="button" class="btn dark btn-outline" style="border:2px solid green"
+                    (click)="uploadfile()">
+              Upload
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <div *ngIf="countpos">Total number of customers: {{count}}</div>
+
+      <div *ngIf="distinctArray">Total number of unique customers: {{distinctArray?.length}}</div>
+
+      <div *ngIf="countpos">Total of customers with positive comments: {{countpos}}</div>
+      <div *ngIf="countneg">Total of customers with negative comments: {{countneg}}</div>
+      <div *ngIf="countneutral">Total of customers with neutral comments: {{countneutral}}</div>
+
+
+      <div id="chartdiv"></div>
+
+
+
+      <div style="width:100%; float:left">
+        <table class='table' *ngIf="excelData" style="width:50%; float:left">
+          <thead>
+            <tr>
+              <th>Reference Id</th>
+              <th>OCN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of excelData">
+              <td style="word-wrap: break-word">{{ d.RID }}</td>
+
+              <td style="word-wrap: break-word">{{ d.OCN }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        <table class='table' *ngIf="result" style="width:50%;  float:left">
+          <thead>
+            <tr>
+              <th> Analysis</th>
+              <th> Per Comment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of result">
+
+              <td>{{ c.COMMENTSLONG.score }}</td>
+              <td>{{ c.COMMENTSLONG.comparative }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

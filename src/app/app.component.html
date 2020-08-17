@@ -3,7 +3,7 @@
 
     <div class='col-sm-9 body-content'>
       <br />
-      <h3>Import Excel and Dispaly Data</h3>
+      <h1>Import Excel and Dispaly Data</h1>
 
 
       <br />
@@ -22,9 +22,10 @@
         </tr>
       </table>
 
-      <div *ngIf="countpos">count of positive comments {{countpos}}</div>
-      <div *ngIf="countneg">count of negative comments {{countneg}}</div>
-      <div *ngIf="countneutral">count of neutral comments {{countneutral}}</div>
+      <div *ngIf="countpos">Total number of customers {{count}}</div>
+      <div *ngIf="countpos">Total of customers with positive comments {{countpos}}</div>
+      <div *ngIf="countneg">Total of customers with negative comments {{countneg}}</div>
+      <div *ngIf="countneutral">Total of customers with neutral comments {{countneutral}}</div>
 
 
       <div id="chartdiv"></div>
@@ -48,15 +49,15 @@
         <table class='table' *ngIf="excelData" style="width:50%; float:left">
           <thead>
             <tr>
-              <th>Customer Id</th>
-              <th>Customer Name</th>
+              <th>Reference Id</th>
+              <th>OCN</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let d of excelData">
               <td style="word-wrap: break-word">{{ d.RID }}</td>
 
-              <td style="word-wrap: break-word">{{ d.FIRSTNAME }}</td>
+              <td style="word-wrap: break-word">{{ d.OCN }}</td>
             </tr>
           </tbody>
         </table>
@@ -70,10 +71,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let y of result">
+            <tr *ngFor="let b of result">
 
-              <td>{{ y.COMMENTSLONG.score }}</td>
-              <td>{{ y.COMMENTSLONG.comparative }}</td>
+              <td>{{ b.COMMENTSLONG.score }}</td>
+              <td>{{ b.COMMENTSLONG.comparative }}</td>
             </tr>
           </tbody>
         </table>

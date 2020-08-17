@@ -17,7 +17,7 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 })
 export class AppComponent {
-  title = 'app';
+  title = 'importexcel';
   public progress: number;
   public message: string;
   public excelData: ExcelData[];
@@ -26,6 +26,8 @@ export class AppComponent {
   public countpos: number;
   public countneg: number;
   public countneutral: number;
+  public count: number;
+  public duplicates: {};
   constructor(private http: HttpClient) { }
   data = [];
   onFileChange(evt: any) {
@@ -75,6 +77,7 @@ export class AppComponent {
       keys.forEach((key, i) => {
         if (key == "COMMENTSLONG") {
           obj2[key] = sentiment.analyze(e[i]);
+          console.dir(e[i]);
           if (obj2[key].score > 0) {
             obj2[key].score = "positive";
             this.countpos = this.countpos + 1;
@@ -90,21 +93,23 @@ export class AppComponent {
             }
           }
 
-            obj2[key].comparative = obj2[key].comparative;
+          obj2[key].comparative = obj2[key].comparative;
+          this.duplicates[i].push(obj2[key].OCN);
             
         }
       });
       return obj2;
     });
     this.result = resArr2;
-    console.dir(this.result);
    
+    console.dir(this.result);
+    console.dir(this.duplicates);
+    this.count = this.countneg + this.countneutral + this.countpos;
 
 
-
+    //chart display
     am4core.useTheme(am4themes_animated);
     let chart = am4core.create("chartdiv", am4charts.PieChart);
-
 // Add data
 chart.data = [ {
   "country": "Positive",
@@ -129,13 +134,13 @@ pieSeries.slices.template.strokeOpacity = 1;
 pieSeries.hiddenState.properties.opacity = 1;
 pieSeries.hiddenState.properties.endAngle = -90;
 pieSeries.hiddenState.properties.startAngle = -90;
-
-
-
-    
-
   }
 }
+
+
+
+
+
 interface ExcelData {
   [index: number]: {
     RID: string; COLTREFERENCE: string; COMPANYNAME: string; OCN: string; TICKETTYPE: string;
